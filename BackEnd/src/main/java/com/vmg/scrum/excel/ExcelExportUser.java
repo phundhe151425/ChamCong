@@ -152,6 +152,45 @@ public class ExcelExportUser {
         styleTitleThin.setWrapText(true);
         styleTitleThin.setFont(fontHeaderThin);
 
+        // style Titles Thin for user Locked
+        CellStyle styleTitleThin_UserLocked = workbook.createCellStyle();
+        styleTitleThin_UserLocked.setBorderBottom(BorderStyle.THIN);
+        styleTitleThin_UserLocked.setBorderTop(BorderStyle.THIN);
+        styleTitleThin_UserLocked.setBorderLeft(BorderStyle.THIN);
+        styleTitleThin_UserLocked.setBorderRight(BorderStyle.THIN);
+        styleTitleThin_UserLocked.setAlignment(HorizontalAlignment.CENTER);
+        styleTitleThin_UserLocked.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThin_UserLocked.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThin_UserLocked.setFillForegroundColor(IndexedColors.CORAL.getIndex());
+        styleTitleThin_UserLocked.setWrapText(true);
+        styleTitleThin_UserLocked.setFont(fontHeaderThin);
+
+        // style Titles Thin for Probation
+        CellStyle styleTitleThin_Probation = workbook.createCellStyle();
+        styleTitleThin_Probation.setBorderBottom(BorderStyle.THIN);
+        styleTitleThin_Probation.setBorderTop(BorderStyle.THIN);
+        styleTitleThin_Probation.setBorderLeft(BorderStyle.THIN);
+        styleTitleThin_Probation.setBorderRight(BorderStyle.THIN);
+        styleTitleThin_Probation.setAlignment(HorizontalAlignment.CENTER);
+        styleTitleThin_Probation.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThin_Probation.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThin_Probation.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+        styleTitleThin_Probation.setWrapText(true);
+        styleTitleThin_Probation.setFont(fontHeaderThin);
+
+        // style Titles Thin for Leave
+        CellStyle styleTitleThin_Leave = workbook.createCellStyle();
+        styleTitleThin_Leave.setBorderBottom(BorderStyle.THIN);
+        styleTitleThin_Leave.setBorderTop(BorderStyle.THIN);
+        styleTitleThin_Leave.setBorderLeft(BorderStyle.THIN);
+        styleTitleThin_Leave.setBorderRight(BorderStyle.THIN);
+        styleTitleThin_Leave.setAlignment(HorizontalAlignment.CENTER);
+        styleTitleThin_Leave.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThin_Leave.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThin_Leave.setFillForegroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
+        styleTitleThin_Leave.setWrapText(true);
+        styleTitleThin_Leave.setFont(fontHeaderThin);
+
         CellStyle styleTitleThinLeftBGC = workbook.createCellStyle();
         styleTitleThinLeftBGC.setBorderBottom(BorderStyle.THIN);
         styleTitleThinLeftBGC.setBorderTop(BorderStyle.THIN);
@@ -202,24 +241,25 @@ public class ExcelExportUser {
                     cell.setCellStyle(styleTitleThin);
 
                     cell = row.createCell(6);
-                    for(Role role: user.getRoles()){
-                        if(role.getId() == 1){
-                            cell.setCellValue("Nhân viên");
-                        }
-                        if(role.getId() == 2){
-                            cell.setCellValue("Trưởng phòng");
-                        }
-                        if(role.getId() == 3) {
-                            cell.setCellValue("Admin");
-                        }
-                    }
+                    cell.setCellValue(user.getPosition().getName());
+//                    for(Role role: user.getRoles()){
+//                        if(role.getId() == 1){
+//                            cell.setCellValue("Nhân viên");
+//                        }
+//                        if(role.getId() == 2){
+//                            cell.setCellValue("Trưởng phòng");
+//                        }
+//                        if(role.getId() == 3) {
+//                            cell.setCellValue("Admin");
+//                        }
+//                    }
                     cell.setCellStyle(styleTitleThin);
 
                     cell = row.createCell(7);
                     if(user.getAvalible()){
-                        cell.setCellValue("A");
+                        cell.setCellValue("Có hiệu lực");
                     }
-                    else  cell.setCellValue("A");
+                    else  cell.setCellValue("Vô hiệu lực");
 
                     cell.setCellStyle(styleTitleThin);
                 }

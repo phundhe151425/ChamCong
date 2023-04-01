@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -68,13 +69,14 @@ public class FileManagerService {
     }
     public String saveLog(ImageLogRequest imageLogRequest) {
         try {
-            String filePath = "C:\\Users\\ADMIN\\log\\"+ imageLogRequest.getCode() +"_" + imageLogRequest.getFullName() + "_" + LocalDate.now().toString();
+            String filePath = "C:\\Users\\Admin\\log\\"+ imageLogRequest.getCode() +"_" + imageLogRequest.getFullName() + "_" + LocalDate.now().toString();
             File dir = Paths.get(filePath).toFile();
             if(!dir.exists()) {
                 dir.mkdirs();
             }
             String name = System.currentTimeMillis() + imageLogRequest.getFile().getOriginalFilename();
-            String filename = Integer.toHexString(name.hashCode()) + name.substring(name.lastIndexOf("."));
+//            String filename = Integer.toHexString(name.hashCode()) + name.substring(name.lastIndexOf("."));
+            String filename = imageLogRequest.getFullName()+"_"+ LocalDate.now().toString()+ name.substring(name.lastIndexOf("."));
             Path path = Paths.get(dir.getAbsolutePath(), filename);
                 imageLogRequest.getFile().transferTo(path);
                 return  filename;

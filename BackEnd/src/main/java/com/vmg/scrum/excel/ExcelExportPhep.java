@@ -299,7 +299,7 @@ public class ExcelExportPhep {
         fontHeaderBold.setFontName("Arial");
         fontHeaderBold.setFontHeight(10);
 
-        // style Titles Thin
+        // style Titles Thin User available =1
         CellStyle styleTitleThinLeft = workbook.createCellStyle();
         styleTitleThinLeft.setBorderBottom(BorderStyle.THIN);
         styleTitleThinLeft.setBorderTop(BorderStyle.THIN);
@@ -310,7 +310,7 @@ public class ExcelExportPhep {
         styleTitleThinLeft.setWrapText(true);
         styleTitleThinLeft.setFont(fontHeaderThin);
 
-        // style Titles Thin
+        // style Titles Thin User available =1
         CellStyle styleTitleThinRight = workbook.createCellStyle();
         styleTitleThinRight.setBorderBottom(BorderStyle.THIN);
         styleTitleThinRight.setBorderTop(BorderStyle.THIN);
@@ -321,7 +321,7 @@ public class ExcelExportPhep {
         styleTitleThinRight.setWrapText(true);
         styleTitleThinRight.setFont(fontHeaderThin);
 
-        // style Titles Thin
+        // style Titles Thin User available =1
         CellStyle styleTitleThinCenter = workbook.createCellStyle();
         styleTitleThinCenter.setBorderBottom(BorderStyle.THIN);
         styleTitleThinCenter.setBorderTop(BorderStyle.THIN);
@@ -369,6 +369,84 @@ public class ExcelExportPhep {
         styleTitleBoldBackground2.setFont(fontHeaderBold);
 
 
+        // style Titles Thin for Locked User
+        CellStyle styleTitleThinCenter_UserLocked = workbook.createCellStyle();
+        styleTitleThinCenter_UserLocked.setBorderBottom(BorderStyle.THIN);
+        styleTitleThinCenter_UserLocked.setBorderTop(BorderStyle.THIN);
+        styleTitleThinCenter_UserLocked.setBorderLeft(BorderStyle.THIN);
+        styleTitleThinCenter_UserLocked.setBorderRight(BorderStyle.THIN);
+        styleTitleThinCenter_UserLocked.setAlignment(HorizontalAlignment.CENTER);
+        styleTitleThinCenter_UserLocked.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThinCenter_UserLocked.setFillForegroundColor(IndexedColors.CORAL.getIndex());
+        styleTitleThinCenter_UserLocked.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        styleTitleThinCenter_UserLocked.setWrapText(true);
+        styleTitleThinCenter_UserLocked.setFont(fontHeaderThin);
+
+        // style Titles Thin
+        CellStyle styleTitleThinLeft_UserLocked = workbook.createCellStyle();
+        styleTitleThinLeft_UserLocked.setBorderBottom(BorderStyle.THIN);
+        styleTitleThinLeft_UserLocked.setBorderTop(BorderStyle.THIN);
+        styleTitleThinLeft_UserLocked.setBorderLeft(BorderStyle.THIN);
+        styleTitleThinLeft_UserLocked.setBorderRight(BorderStyle.THIN);
+        styleTitleThinLeft_UserLocked.setAlignment(HorizontalAlignment.LEFT);
+        styleTitleThinLeft_UserLocked.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThinLeft_UserLocked.setFillForegroundColor(IndexedColors.CORAL.getIndex());
+        styleTitleThinLeft_UserLocked.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        styleTitleThinLeft_UserLocked.setWrapText(true);
+        styleTitleThinLeft_UserLocked.setFont(fontHeaderThin);
+
+        // style Titles Thin for Probation
+        CellStyle styleTitleThinCenter_Probation = workbook.createCellStyle();
+        styleTitleThinCenter_Probation.setBorderBottom(BorderStyle.THIN);
+        styleTitleThinCenter_Probation.setBorderTop(BorderStyle.THIN);
+        styleTitleThinCenter_Probation.setBorderLeft(BorderStyle.THIN);
+        styleTitleThinCenter_Probation.setBorderRight(BorderStyle.THIN);
+        styleTitleThinCenter_Probation.setAlignment(HorizontalAlignment.CENTER);
+        styleTitleThinCenter_Probation.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThinCenter_Probation.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+        styleTitleThinCenter_Probation.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        styleTitleThinCenter_Probation.setWrapText(true);
+        styleTitleThinCenter_Probation.setFont(fontHeaderThin);
+
+        // style Titles Thin for Probation
+        CellStyle styleTitleThinLeft_Probation = workbook.createCellStyle();
+        styleTitleThinLeft_Probation.setBorderBottom(BorderStyle.THIN);
+        styleTitleThinLeft_Probation.setBorderTop(BorderStyle.THIN);
+        styleTitleThinLeft_Probation.setBorderLeft(BorderStyle.THIN);
+        styleTitleThinLeft_Probation.setBorderRight(BorderStyle.THIN);
+        styleTitleThinLeft_Probation.setAlignment(HorizontalAlignment.LEFT);
+        styleTitleThinLeft_Probation.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThinLeft_Probation.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+        styleTitleThinLeft_Probation.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        styleTitleThinLeft_Probation.setWrapText(true);
+        styleTitleThinLeft_Probation.setFont(fontHeaderThin);
+
+        // style Titles Thin for Leave
+        CellStyle styleTitleThinCenter_Leave = workbook.createCellStyle();
+        styleTitleThinCenter_Leave.setBorderBottom(BorderStyle.THIN);
+        styleTitleThinCenter_Leave.setBorderTop(BorderStyle.THIN);
+        styleTitleThinCenter_Leave.setBorderLeft(BorderStyle.THIN);
+        styleTitleThinCenter_Leave.setBorderRight(BorderStyle.THIN);
+        styleTitleThinCenter_Leave.setAlignment(HorizontalAlignment.CENTER);
+        styleTitleThinCenter_Leave.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThinCenter_Leave.setFillForegroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
+        styleTitleThinCenter_Leave.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        styleTitleThinCenter_Leave.setWrapText(true);
+        styleTitleThinCenter_Leave.setFont(fontHeaderThin);
+
+        // style Titles Thin for Leave
+        CellStyle styleTitleThinLeft_Leave = workbook.createCellStyle();
+        styleTitleThinLeft_Leave.setBorderBottom(BorderStyle.THIN);
+        styleTitleThinLeft_Leave.setBorderTop(BorderStyle.THIN);
+        styleTitleThinLeft_Leave.setBorderLeft(BorderStyle.THIN);
+        styleTitleThinLeft_Leave.setBorderRight(BorderStyle.THIN);
+        styleTitleThinLeft_Leave.setAlignment(HorizontalAlignment.LEFT);
+        styleTitleThinLeft_Leave.setVerticalAlignment(VerticalAlignment.CENTER);
+        styleTitleThinLeft_Leave.setFillForegroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
+        styleTitleThinLeft_Leave.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        styleTitleThinLeft_Leave.setWrapText(true);
+        styleTitleThinLeft_Leave.setFont(fontHeaderThin);
+
         listDeparts = departmentRepository.findAll();
         listUsers = userRepository.findAll();
         Row row = null;
@@ -391,27 +469,75 @@ public class ExcelExportPhep {
                     row = sheet.createRow(sheet.getLastRowNum()+1);
                     cell = row.createCell(0);
                     cell.setCellValue(tt++);
-                    cell.setCellStyle(styleTitleThinCenter);
+                    if (fur.isLeaveCurrentYear()){
+                        cell.setCellStyle(styleTitleThinCenter_Leave);
+                    }else if(!fur.getUser().getAvalible()){
+                        cell.setCellStyle(styleTitleThinCenter_UserLocked);
+                    } else if (fur.isProbation()) {
+                        cell.setCellStyle(styleTitleThinCenter_Probation);
+                    } else{
+                        cell.setCellStyle(styleTitleThinCenter);
+                    }
 
                     cell = row.createCell(1);
                     cell.setCellValue(fur.getUser().getFullName());
-                    cell.setCellStyle(styleTitleThinLeft);
+                    if (fur.isLeaveCurrentYear()){
+                        cell.setCellStyle(styleTitleThinLeft_Leave);
+                    }else if(!fur.getUser().getAvalible()){
+                        cell.setCellStyle(styleTitleThinLeft_UserLocked);
+                    } else if (fur.isProbation()) {
+                        cell.setCellStyle(styleTitleThinLeft_Probation);
+                    } else{
+                        cell.setCellStyle(styleTitleThinLeft);
+                    }
 
                     cell = row.createCell(2);
                     cell.setCellValue(fur.getUser().getCode());
-                    cell.setCellStyle(styleTitleThinLeft);
+                    if (fur.isLeaveCurrentYear()){
+                        cell.setCellStyle(styleTitleThinCenter_Leave);
+                    }else if(!fur.getUser().getAvalible()){
+                        cell.setCellStyle(styleTitleThinCenter_UserLocked);
+                    } else if (fur.isProbation()) {
+                        cell.setCellStyle(styleTitleThinCenter_Probation);
+                    } else{
+                        cell.setCellStyle(styleTitleThinCenter);
+                    }
 
                     cell = row.createCell(3);
                     cell.setCellValue(fur.getUser().getStartWork().toString());
-                    cell.setCellStyle(styleTitleThinCenter);
+                    if (fur.isLeaveCurrentYear()){
+                        cell.setCellStyle(styleTitleThinCenter_Leave);
+                    }else if(!fur.getUser().getAvalible()){
+                        cell.setCellStyle(styleTitleThinCenter_UserLocked);
+                    } else if (fur.isProbation()) {
+                        cell.setCellStyle(styleTitleThinCenter_Probation);
+                    } else{
+                        cell.setCellStyle(styleTitleThinCenter);
+                    }
 
                     cell = row.createCell(4);
                     cell.setCellValue(fur.getAvailibleCurrentYear());
-                    cell.setCellStyle(styleTitleThinCenter);
+                    if (fur.isLeaveCurrentYear()){
+                        cell.setCellStyle(styleTitleThinCenter_Leave);
+                    }else if(!fur.getUser().getAvalible()){
+                        cell.setCellStyle(styleTitleThinCenter_UserLocked);
+                    } else if (fur.isProbation()) {
+                        cell.setCellStyle(styleTitleThinCenter_Probation);
+                    } else{
+                        cell.setCellStyle(styleTitleThinCenter);
+                    }
 
                     cell = row.createCell(5);
                     cell.setCellValue(fur.getOddCurrentYear());
-                    cell.setCellStyle(styleTitleThinCenter);
+                    if (fur.isLeaveCurrentYear()){
+                        cell.setCellStyle(styleTitleThinCenter_Leave);
+                    }else if(!fur.getUser().getAvalible()){
+                        cell.setCellStyle(styleTitleThinCenter_UserLocked);
+                    } else if (fur.isProbation()) {
+                        cell.setCellStyle(styleTitleThinCenter_Probation);
+                    } else{
+                        cell.setCellStyle(styleTitleThinCenter);
+                    }
 
                     for(int i=0;i<=11;i++){
                         cell = row.createCell(i+6);
@@ -420,7 +546,15 @@ public class ExcelExportPhep {
                                 cell.setCellValue(fur1.getUsedInMonth());
                             }
                         }
-                        cell.setCellStyle(styleTitleThinCenter);
+                        if (fur.isLeaveCurrentYear()){
+                            cell.setCellStyle(styleTitleThinCenter_Leave);
+                        }else if(!fur.getUser().getAvalible()){
+                            cell.setCellStyle(styleTitleThinCenter_UserLocked);
+                        } else if (fur.isProbation()) {
+                            cell.setCellStyle(styleTitleThinCenter_Probation);
+                        } else{
+                            cell.setCellStyle(styleTitleThinCenter);
+                        }
                     }
 
                     int rowCount = sheet.getLastRowNum()+1;
@@ -428,7 +562,15 @@ public class ExcelExportPhep {
                     //Tổng số ngày đã nghỉ trước tháng 4
                     cell = row.createCell(18);
                     cell.setCellFormula("SUM(G"+rowCount+":I"+rowCount+")");
-                    cell.setCellStyle(styleTitleThinCenter);
+                    if (fur.isLeaveCurrentYear()){
+                        cell.setCellStyle(styleTitleThinCenter_Leave);
+                    }else if(!fur.getUser().getAvalible()){
+                        cell.setCellStyle(styleTitleThinCenter_UserLocked);
+                    } else if (fur.isProbation()) {
+                        cell.setCellStyle(styleTitleThinCenter_Probation);
+                    } else{
+                        cell.setCellStyle(styleTitleThinCenter);
+                    }
 
                     //Tổng số ngày nghỉ phép của năm 2022
                     cell = row.createCell(19);
@@ -436,14 +578,30 @@ public class ExcelExportPhep {
 //                    cell.setCellFormula("IF(F"+rowCount+"-SUM(G"+rowCount+":I"+rowCount+")<=0," +
 //                            "SUM(G"+rowCount+":I"+rowCount+")-F"+rowCount+"+SUM(J"+rowCount+":R"+rowCount+")," +
 //                            "SUM(J"+rowCount+":R"+rowCount+"))");
-                    cell.setCellStyle(styleTitleThinCenter);
+                    if (fur.isLeaveCurrentYear()){
+                        cell.setCellStyle(styleTitleThinCenter_Leave);
+                    }else if(!fur.getUser().getAvalible()){
+                        cell.setCellStyle(styleTitleThinCenter_UserLocked);
+                    } else if (fur.isProbation()) {
+                        cell.setCellStyle(styleTitleThinCenter_Probation);
+                    } else{
+                        cell.setCellStyle(styleTitleThinCenter);
+                    }
 
                     //Số ngày phép còn lại của năm 2021
                     cell = row.createCell(20);
                     cell.setCellFormula("F"+rowCount+"-SUM(G"+rowCount+":I"+rowCount+")");
 //                    cell.setCellFormula("IF(F"+rowCount+"-SUM(G"+rowCount+":I"+rowCount+")" +
 //                                            "<=0,0,F"+rowCount+"-SUM(G"+rowCount+":I"+rowCount+"))");
-                    cell.setCellStyle(styleTitleThinCenter);
+                    if (fur.isLeaveCurrentYear()){
+                        cell.setCellStyle(styleTitleThinCenter_Leave);
+                    }else if(!fur.getUser().getAvalible()){
+                        cell.setCellStyle(styleTitleThinCenter_UserLocked);
+                    } else if (fur.isProbation()) {
+                        cell.setCellStyle(styleTitleThinCenter_Probation);
+                    } else{
+                        cell.setCellStyle(styleTitleThinCenter);
+                    }
 
                     //Số ngày phép còn lại của năm 2022
                     cell = row.createCell(21);

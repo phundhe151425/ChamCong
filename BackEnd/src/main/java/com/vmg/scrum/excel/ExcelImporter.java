@@ -200,15 +200,25 @@ public class ExcelImporter {
                         case 4:
                             String role = currentCell.getStringCellValue();
                             Position position = positionRepository.findByName(role);
-                            Long id = position.getRole().getId();
+                            Long id = position.getId();
                             String roleName = null;
                             if (id == 1) {
-                                roleName = "user";
+                                roleName = "ROLE_ADMIN";
                             }
                             if(id == 2)
-                                roleName="manage";
+                                roleName="ROLE_ADMIN";
                             if(id==3)
-                                roleName="admin";
+                                roleName="ROLE_MANAGE";
+                            if(id==4)
+                                roleName="ROLE_MANAGE";
+                            if(id==5)
+                                roleName="ROLE_USER";
+                            if(id==6)
+                                roleName="ROLE_USER";
+                            if(id==7)
+                                roleName="ROLE_USER";
+                            if(id==7)
+                                roleName="ROLE_USER";
                             Set<String> roles = new HashSet<>();
                             roles.add(roleName);
                             signupRequest.setRole(roles);
