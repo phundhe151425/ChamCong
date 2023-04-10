@@ -31,6 +31,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/furlough")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class FurloughController {
     @Autowired
     FurloughService furloughService;

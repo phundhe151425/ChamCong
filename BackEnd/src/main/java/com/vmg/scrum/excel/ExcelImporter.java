@@ -217,7 +217,7 @@ public class ExcelImporter {
                                 roleName="ROLE_USER";
                             if(id==7)
                                 roleName="ROLE_USER";
-                            if(id==7)
+                            if(id==8)
                                 roleName="ROLE_USER";
                             Set<String> roles = new HashSet<>();
                             roles.add(roleName);

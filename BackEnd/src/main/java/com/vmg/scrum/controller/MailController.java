@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequestMapping("/api/mail")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class MailController {
     @Autowired
     MailService mailService;

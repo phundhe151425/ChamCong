@@ -26,6 +26,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/excel")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class ExcelController {
 
     @Autowired

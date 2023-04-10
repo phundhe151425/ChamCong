@@ -182,21 +182,24 @@ public class UserServiceImpl implements UserService {
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
-                    case "admin" -> {
+                    case "admin": {
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
                     }
-                    case "manage" -> {
+                    break;
+                    case "manage":{
                         Role manageRole = roleRepository.findByName(ERole.ROLE_MANAGE)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(manageRole);
                     }
-                    default -> {
+                    break;
+                    default: {
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(userRole);
                     }
+                    break;
                 }
             });
         }
@@ -272,7 +275,7 @@ public class UserServiceImpl implements UserService {
         }
 
         user.setUsername(updateRequest.getUsername());
-        user.setCode("VMG_"+updateRequest.getCode());
+        user.setCode("BLUE_"+updateRequest.getCode());
         user.setFullName(updateRequest.getFullName());
         user.setGender(updateRequest.getGender());
         Department department = departmentRepository.findByName(updateRequest.getDepartment());

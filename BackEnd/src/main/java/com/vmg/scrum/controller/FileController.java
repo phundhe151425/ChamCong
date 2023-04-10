@@ -11,9 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin("*")
+
 @RestController
 @RequestMapping("api/file")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class FileController {
     @Autowired
     FileManagerService fileManagerService;

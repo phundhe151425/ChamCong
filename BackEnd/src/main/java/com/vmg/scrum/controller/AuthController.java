@@ -16,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class AuthController {
     private final UserService userService;
 

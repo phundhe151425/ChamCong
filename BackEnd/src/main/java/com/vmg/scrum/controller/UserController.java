@@ -30,6 +30,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user-management")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
     @Autowired
     UserRepository userRepository;
