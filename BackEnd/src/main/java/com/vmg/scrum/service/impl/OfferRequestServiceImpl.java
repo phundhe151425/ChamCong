@@ -92,7 +92,7 @@ public class OfferRequestServiceImpl implements OfferRequestService {
         ApproveStatus approveStatus = approveRepository.findById(offerRequest.getApproveStatus());
         CatergoryRequest catergoryRequest = categoryRequestRepository.findById(offerRequest.getCatergoryRequest());
         CategoryReason categoryReason = categoryReasonRepository.findById(offerRequest.getCategoryReason());
-        Request request = new Request(creator, offerRequest.getTitle(), offerRequest.getContent(), approveStatus, categoryReason, catergoryRequest, offerRequest.getDateFrom(), offerRequest.getDateTo(), offerRequest.getDateForget(), offerRequest.getTimeStart(), offerRequest.getTimeEnd(), offerRequest.getLastSign());
+        Request request = new Request(creator, offerRequest.getTitle(), offerRequest.getContent(), approveStatus, categoryReason, catergoryRequest, offerRequest.getDateFrom(), offerRequest.getDateTo(), offerRequest.getDateForget(), offerRequest.getTimeStart(), offerRequest.getTimeEnd(), offerRequest.getLastSign(), false);
         Set<User> approves = new HashSet<>();
         Set<User> followers = new HashSet<>();
         for (String s : offerRequest.getApprovers()) {
@@ -121,16 +121,16 @@ public class OfferRequestServiceImpl implements OfferRequestService {
         request.setApprovers(approves);
         request.setFollowers(followers);
         offerRepository.save(request);
-        if(offerRequest.getCategoryReason() == 6) {
-            mailService.sendEmailFollowersForget(offerRequest.getFollowers(), offerRequest.getContent(), department,request, creator, dateForget);
-            mailService.sendEmailApproversForget(offerRequest.getApprovers(), offerRequest.getContent(), department, request, creator, dateForget);
-        } else if (offerRequest.getCategoryReason() == 4 || offerRequest.getCategoryReason() == 5) {
-            mailService.sendEmailFollowersTCS(offerRequest.getFollowers(), offerRequest.getContent(), department,request, creator, dateFrom, dateTo);
-            mailService.sendEmailApproversTCS(offerRequest.getApprovers(), offerRequest.getContent(), department, request, creator, dateFrom, dateTo);
-    }else {
-            mailService.sendEmailFollowers(offerRequest.getFollowers(), offerRequest.getContent(), department, creator, request, timeStart, dateFrom, timeEnd, dateTo);
-            mailService.sendEmailApprovers(offerRequest.getApprovers(), offerRequest.getContent(), department, creator, request, timeStart, dateFrom, timeEnd, dateTo);
-        }
+//        if(offerRequest.getCategoryReason() == 6) {
+//            mailService.sendEmailFollowersForget(offerRequest.getFollowers(), offerRequest.getContent(), department,request, creator, dateForget);
+//            mailService.sendEmailApproversForget(offerRequest.getApprovers(), offerRequest.getContent(), department, request, creator, dateForget);
+//        } else if (offerRequest.getCategoryReason() == 4 || offerRequest.getCategoryReason() == 5) {
+//            mailService.sendEmailFollowersTCS(offerRequest.getFollowers(), offerRequest.getContent(), department,request, creator, dateFrom, dateTo);
+//            mailService.sendEmailApproversTCS(offerRequest.getApprovers(), offerRequest.getContent(), department, request, creator, dateFrom, dateTo);
+//    }else {
+//            mailService.sendEmailFollowers(offerRequest.getFollowers(), offerRequest.getContent(), department, creator, request, timeStart, dateFrom, timeEnd, dateTo);
+//            mailService.sendEmailApprovers(offerRequest.getApprovers(), offerRequest.getContent(), department, creator, request, timeStart, dateFrom, timeEnd, dateTo);
+//        }
 
         return new MessageResponse("Tạo request thành công!");
 

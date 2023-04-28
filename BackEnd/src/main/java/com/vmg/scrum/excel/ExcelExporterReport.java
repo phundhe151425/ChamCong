@@ -452,7 +452,6 @@ public class ExcelExporterReport {
                                 cell.setCellValue(logDetail.getSigns().getName().toString());
                                 cell.setCellStyle(styleBodyColor);
                             }
-
                         }
 
                     }

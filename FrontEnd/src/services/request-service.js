@@ -18,12 +18,12 @@ class RequestService {
 
     addRequest(request) {
         let requestForm = new FormData(request);
-        return axios.post(API_URL + `request`, requestForm);
+        return axios.post(API_URL + `/request`, requestForm);
 
     }
 
     changeStatus(requestId, newStatusId, oldStatusId, approvedId) {
-        return axios.put(API_URL + `request?requestId=${requestId}&newStatusId=${newStatusId}&oldStatusId=${oldStatusId}&approvedId=${approvedId}`);
+        return axios.put(API_URL + `/request?requestId=${requestId}&newStatusId=${newStatusId}&oldStatusId=${oldStatusId}&approvedId=${approvedId}`);
     }
 
     myRequests(params) {
@@ -39,7 +39,7 @@ class RequestService {
     }
 
     getFurloughinMonth(userId) {
-        return httpCommon.get(`furlough/furloughByMonthAndYearAndUser?userId=${userId}`);
+        return httpCommon.get(`/furlough/furloughByMonthAndYearAndUser?userId=${userId}`);
     }
 
 }

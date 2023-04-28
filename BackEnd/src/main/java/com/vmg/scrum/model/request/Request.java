@@ -90,7 +90,9 @@ public class Request extends BaseEntity {
     @JoinColumn(name = "approved_id")
     private User approved;
 
-    public Request(User creator, String title, String content, ApproveStatus approveStatus, CategoryReason categoryReason, CatergoryRequest catergoryRequest, LocalDate dateFrom, LocalDate dateTo, LocalDate dateForget, LocalTime timeStart, LocalTime timeEnd, Sign lastSign) {
+    private boolean isAccess;
+
+    public Request(User creator, String title, String content, ApproveStatus approveStatus, CategoryReason categoryReason, CatergoryRequest catergoryRequest, LocalDate dateFrom, LocalDate dateTo, LocalDate dateForget, LocalTime timeStart, LocalTime timeEnd, Sign lastSign,boolean isAccess) {
         this.creator = creator;
         this.title = title;
         this.content = content;
@@ -103,6 +105,7 @@ public class Request extends BaseEntity {
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
         this.lastSign = lastSign;
+        this.isAccess = isAccess;
 
 
 //        LocalTime s1 = LocalTime.of(7, 59);

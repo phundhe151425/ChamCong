@@ -102,8 +102,8 @@ public interface LogDetailRepository extends JpaRepository<LogDetail, Long> {
 
     @Query(value = "select l from LogDetail l\n" +
             " join l.user u " +
-            "where u.departments.id= ?1 and MONTH (l.dateLog) = ?2 and u.fullName LIKE %?3%  ")
-    List<LogDetail> findByMonthAndDepartment(Long id, Integer month,String search);
+            "where u.departments.id= ?1 and MONTH (l.dateLog) = ?2 and YEAR (l.dateLog) = ?3 and u.fullName LIKE %?4%  ")
+    List<LogDetail> findByMonthAndDepartment(Long id, Integer month,Integer year,String search);
 
     @Query(value = "select l from LogDetail l\n" +
             "where l.dateLog = ?1 ")
@@ -111,15 +111,15 @@ public interface LogDetailRepository extends JpaRepository<LogDetail, Long> {
 
     @Query(value = "select l from LogDetail l\n" +
             " join l.user u " +
-            "where u.departments.id= ?1 and MONTH (l.dateLog) = ?2 " +
+            "where u.departments.id= ?1 and MONTH (l.dateLog) = ?2 and YEAR (l.dateLog) = ?3 " +
             "order by l.dateLog asc ")
-    List<LogDetail> findByMonthAndDepartmentSortDate(Long id, Integer month);
+    List<LogDetail> findByMonthAndDepartmentSortDate(Long id, Integer month,Integer year);
 
     @Query(value = "select l from LogDetail l\n" +
             " join l.user u " +
-            "where  MONTH (l.dateLog) = ?1 " +
+            "where  MONTH (l.dateLog) = ?1 and YEAR (l.dateLog) = ?2 " +
             "order by l.dateLog asc ")
-    List<LogDetail> findByMonthSortDate(Integer month);
+    List<LogDetail> findByMonthSortDate(Integer month, Integer year);
 
     @Query(value = "select l from LogDetail l\n" +
             " join l.user u " +
@@ -135,8 +135,8 @@ public interface LogDetailRepository extends JpaRepository<LogDetail, Long> {
 
     @Query(value = "select l from LogDetail l\n" +
             " join l.user u " +
-            "where MONTH (l.dateLog) = ?1  and u.fullName LIKE %?2% ")
-    List<LogDetail> findByMonth(Integer month,String search);
+            "where MONTH (l.dateLog) = ?1 and YEAR (l.dateLog) = ?2 and u.fullName LIKE %?3% ")
+    List<LogDetail> findByMonth(Integer month,Integer year, String search);
 
     Page<LogDetail> findByUserDepartmentsId(Pageable pageable, Long id);
 
@@ -179,6 +179,12 @@ public interface LogDetailRepository extends JpaRepository<LogDetail, Long> {
             "where u.code = ?1 " +
             "and l.date_log = ?2 ", nativeQuery = true)
     LogDetail findByUserCodeAndDate(String code, LocalDate date);
+
+    @Query(value = "select * from log_detail l \n" +
+            "join user u on l.user_id = u.user_id \n " +
+            "where u.code = ?1 " +
+            "and l.date_log >= ?2 && l.date_log <= ?3", nativeQuery = true)
+    List<LogDetail> findByUserCodeAndDate(String code,LocalDate firstDayOfMonth, LocalDate currentDate);
 
     @Query(value = "select * from log_detail l \n" +
             "join user u on l.user_id = u.user_id \n " +

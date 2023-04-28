@@ -7,6 +7,16 @@ public class EditLogRequest {
     @NotNull
     private String code;
 
+    @NotBlank
+    private String date;
+
+    private String reason;
+
+    private String codeAdminEdit;
+
+    @NotNull
+    private String sign;
+
     public String getReason() {
         return reason;
     }
@@ -15,9 +25,6 @@ public class EditLogRequest {
         this.reason = reason;
     }
 
-    @NotNull
-    private String sign;
-
     public String getCodeAdminEdit() {
         return codeAdminEdit;
     }
@@ -25,13 +32,6 @@ public class EditLogRequest {
     public void setCodeAdminEdit(String codeAdminEdit) {
         this.codeAdminEdit = codeAdminEdit;
     }
-
-    @NotBlank
-    private String date;
-
-    private String reason;
-
-    private String codeAdminEdit;
 
     public String getSign() {
         return sign;

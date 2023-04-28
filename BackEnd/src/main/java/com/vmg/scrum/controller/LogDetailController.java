@@ -83,14 +83,15 @@ public class LogDetailController {
     public ResponseEntity<List<UserLogDetail>> getAllByMonthAndDepartment(
                                                         @RequestParam(name = "month", required = true) Integer month,
                                                         @RequestParam(name = "id", required = false) Long id,
-                                                        @RequestParam(name = "search",required = false) String search
+                                                        @RequestParam(name = "search",required = false) String search,
+                                                        @RequestParam(name = "year",required = true) Integer year
                                                         ) throws ParseException {
         List<LogDetail> logDetails = null;
         List<User> users = userRepository.findAll();
         List<UserLogDetail> userLogDetails = new ArrayList<>();
         if (id != null) {
             List<User> usersDepart = userRepository.findAllByDepartments_Id(id);
-            logDetails = logDetailRepository.findByMonthAndDepartment(id, month,search);
+            logDetails = logDetailRepository.findByMonthAndDepartment(id, month,year,search);
             for (User user : usersDepart) {
                 UserLogDetail userLogDetail = new UserLogDetail();
                 List<LogDetail> list = new ArrayList<>();
@@ -112,7 +113,7 @@ public class LogDetailController {
                 continue;
             }
         } else {
-            logDetails = logDetailRepository.findByMonth(month,search);
+            logDetails = logDetailRepository.findByMonth(month,year,search);
             for (User user : users) {
                 UserLogDetail userLogDetail = new UserLogDetail();
                 List<LogDetail> list = new ArrayList<>();

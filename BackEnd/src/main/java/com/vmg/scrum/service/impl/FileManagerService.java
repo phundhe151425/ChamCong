@@ -65,8 +65,6 @@ public class FileManagerService {
                 e.printStackTrace();
                 return "default.png";
             }
-
-
     }
     public String saveLog(ImageLogRequest imageLogRequest) {
         try {

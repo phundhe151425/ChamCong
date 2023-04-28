@@ -48,7 +48,7 @@ public class ExcelController {
 
 
     @GetMapping("/export_report")
-    public ResponseEntity exportToExcel(@RequestParam(name = "id", defaultValue = "0") Long id, @RequestParam int month, HttpServletResponse response) throws IOException {
+    public ResponseEntity exportToExcel(@RequestParam(name = "id", defaultValue = "0") Long id, @RequestParam int month, @RequestParam(name = "year",required = true) Integer year, HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -59,12 +59,12 @@ public class ExcelController {
         response.setHeader(headerKey, headerValue);
         List<LogDetail> listLogs = new ArrayList<>();
         if(id==0){
-            listLogs = logDetailRepository.findByMonthSortDate(month);
+            listLogs = logDetailRepository.findByMonthSortDate(month, year);
             ExcelExporterReport excelExporter = new ExcelExporterReport(listLogs,month,departmentRepository,userRepository,logDetailRepository);
             excelExporter.export(response);
         }
         else {
-            listLogs = logDetailRepository.findByMonthAndDepartmentSortDate(id, month);
+            listLogs = logDetailRepository.findByMonthAndDepartmentSortDate(id, month,year);
             ExcelExporterReport excelExporter = new ExcelExporterReport(listLogs, id,month,departmentRepository,userRepository,logDetailRepository);
             excelExporter.export(response);
         }

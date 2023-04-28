@@ -19,6 +19,8 @@
     "bootstrap": "^5.2.2",
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.8.3",
+    "cors": "^2.8.5",
+    "cors-anywhere": "^0.4.4",
     "element-ui": "^2.15.10",
     "http-proxy-middleware": "^2.0.6",
     "https": "^1.0.0",

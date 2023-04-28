@@ -226,15 +226,16 @@ export default {
         "time": this.userInfo.time
       }
       LogdetailService.faceTimeKeepLog(infoKeepLog).then(() => {
-        this.$swal.fire({
-          title: "Chấm công thành công",
-          icon: "success",
-          timer: 1000,
-          customClass: {
-            container: 'log-swal'
-          },
-          target: document.getElementById("log-swal-view"),
-        });
+        this.handleOpenCamera();
+        // this.$swal.fire({
+        //   title: "Chấm công thành công",
+        //   icon: "success",
+        //   timer: 1000,
+        //   customClass: {
+        //     container: 'log-swal'
+        //   },
+        //   target: document.getElementById("log-swal-view"),
+        // });
       })
     },
     handleTakePhoto() {

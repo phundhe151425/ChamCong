@@ -17,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
@@ -123,6 +121,17 @@ public class LogDetailServiceImpl  implements LogDetailService{
         LocalDate dateParse = LocalDate.parse(date,sdfdate);
         if(logDetail!=null){
             logDetail.setTimeOut(timeParse);
+            Duration duration = Duration.between(logDetail.getTimeIn(), logDetail.getTimeOut());
+//            System.out.println("Hour: "+duration.toHours());
+//            System.out.println("Minutes: "+(duration.toMinutes() % 60));
+//            System.out.println("Seconds: "+(duration.toSeconds() % 60));
+
+            LocalTime total = LocalTime.of((int)duration.toHours(),
+                    (int)(duration.toMinutes() % 60),
+                    (int)(duration.toSeconds() % 60));
+            System.out.println("TotalWork: " + total);
+            logDetail.setTotalWork(total);
+
         }
         else {
             logDetail = new LogDetail();

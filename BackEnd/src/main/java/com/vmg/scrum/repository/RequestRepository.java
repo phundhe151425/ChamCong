@@ -17,7 +17,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
             "join request_approvers ra on r.request_id=ra.request_id\n" +
             "left join request_followers rf on ra.request_id=rf.request_id\n" +
             "where (rf.user_id = ?1 or ra.user_id= ?1)\n" +
-            "group by r.request_id\n" +
+//            "group by r.request_id\n" +
             "order by r.request_id desc;", nativeQuery = true)
     List<Request> findAll(long user_id);
 
@@ -27,7 +27,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
             "join user u on u.user_id=r.creator_id\n" +
             "where (ra.user_id = ?1 or rf.user_id= ?1)\n" +
             "and (r.title LIKE %?2% or u.full_name LIKE %?2%)\n" +
-            "group by r.request_id\n" +
+//            "group by r.request_id\n" +
             "order by r.request_id desc;", nativeQuery = true)
     List<Request> findBySearch(long user_id, String search);
 
@@ -38,7 +38,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
             "where (ra.user_id = ?1 or rf.user_id = ?1)\n" +
             "and  (r.approve_status_id=?3 )\n" +
             "and (r.title LIKE %?2% or u.full_name LIKE %?2%)\n" +
-            "group by r.request_id\n" +
+//            "group by r.request_id\n" +
             "order by r.request_id desc;", nativeQuery = true)
     List<Request> findBySearchAndStatus(long user_id, String search, Long status);
 
@@ -48,7 +48,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
             "join user u on u.user_id=r.creator_id\n" +
             "where (ra.user_id = ?1 or rf.user_id= ?1)\n" +
             "and  (r.approve_status_id=?2 )\n" +
-            "group by r.request_id\n" +
+//            "group by r.request_id\n" +
             "order by r.request_id desc;", nativeQuery = true)
     List<Request> findByStatus(long user_id,Long status);
 
@@ -59,8 +59,10 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     @Query(value = "select * from request r \n" +
             "where r.approve_status_id = ?1 " +
-            "and r.date_to >= ?2 "+" and r.date_from <= ?2 "+"or r.date_forget = ?2", nativeQuery = true)
-    List<Request> findByStatusAndDateList(Integer status, LocalDate date);
+            "and ((r.date_from >= ?2 and r.date_to <= ?3) or (r.date_forget >= ?2 and r.date_forget <= ?3))", nativeQuery = true)
+    List<Request> findByStatusAndDateList(Integer status,LocalDate firstDayOfMonth, LocalDate currentDate);
+
+
 
     @Query(value = "select * from request r \n" +
             "join request_approvers ra on r.request_id=ra.request_id\n" +
@@ -68,7 +70,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
             "join user u on u.user_id=r.creator_id\n" +
             "where (ra.user_id = ?1 or rf.user_id= ?1)\n" +
             "and  (u.department_id=?2)\n" +
-            "group by r.request_id\n" +
+//            "group by r.request_id\n" +
             "order by r.request_id desc;", nativeQuery = true)
     List<Request> findByDepartmentId(long user_id, Long departId);
 
@@ -79,7 +81,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
             "where (ra.user_id = ?1 or rf.user_id= ?1)\n" +
             "and  (u.department_id=?2)\n" +
             "and (r.title LIKE %?3% or u.full_name LIKE %?3%)\n" +
-            "group by r.request_id\n" +
+//            "group by r.request_id\n" +
             "order by r.request_id desc;", nativeQuery = true)
     List<Request> findByDepartmentIdAndSearch(long user_id, Long departId, String search);
 
@@ -90,7 +92,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
             "where (ra.user_id = ?1 or rf.user_id= ?1)\n" +
             "and  (u.department_id=?2)\n" +
             "and  (r.approve_status_id=?3 )\n" +
-            "group by r.request_id\n" +
+//            "group by r.request_id\n" +
             "order by r.request_id desc;", nativeQuery = true)
     List<Request> findByByDepartmentIdAndStatus(long userId, Long departId, Long status);
 
@@ -102,7 +104,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
             "and  (u.department_id=?2)\n" +
             "and (r.title LIKE %?3% or u.full_name LIKE %?3%)\n" +
             "and  (r.approve_status_id=?4)\n" +
-            "group by r.request_id\n" +
+//            "group by r.request_id\n" +
             "order by r.request_id desc;", nativeQuery = true)
     List<Request> findByByDepartmentIdAndSearchAndStatus(long userId, Long departId, String search, Long status);
 
