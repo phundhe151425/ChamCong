@@ -315,7 +315,7 @@
         <div>
           <el-table
               :data="users"
-              height="780px"
+              height="700px"
               :header-cell-style="{
               background: '#D9D9D9',
               color: 'black',

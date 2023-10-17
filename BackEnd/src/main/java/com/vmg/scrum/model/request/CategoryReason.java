@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_CategoryReason")
 public class CategoryReason {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

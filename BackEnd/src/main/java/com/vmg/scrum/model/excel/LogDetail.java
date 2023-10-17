@@ -22,6 +22,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_LogDetail")
 public class LogDetail extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

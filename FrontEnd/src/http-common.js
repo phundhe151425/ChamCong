@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const BASE_URL = 'http://localhost:8100/api';
+export const FE_URL = 'https://localhost:8000/';
 
 export const jsonAPI = axios.create({
     baseURL: BASE_URL,

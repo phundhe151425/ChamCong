@@ -19,6 +19,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_Request")
 public class Request extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

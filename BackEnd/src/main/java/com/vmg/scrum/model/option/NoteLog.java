@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_NoteLog")
 public class NoteLog  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

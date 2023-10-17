@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_LogDetailTotal")
 public class LogDetailTotal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -12,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_Role")
 public class Role extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

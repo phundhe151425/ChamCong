@@ -1,6 +1,7 @@
 package com.vmg.scrum.payload.request;
 
 import com.vmg.scrum.model.Position;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Set;
-
+@Data
 public class UpdateUserRequest {
 
     @NotBlank(message = "Chưa nhập email")
@@ -46,6 +47,9 @@ public class UpdateUserRequest {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate endWork;
+
+    private String badgeNumber;
+    private String ssn;
 
     public LocalDate getStartWork() {
         return startWork;

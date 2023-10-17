@@ -1,5 +1,8 @@
 package com.vmg.scrum.payload.request;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,6 +13,9 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Set;
 
+@Data
+@Setter
+@Getter
 public class SignupRequest {
     @NotBlank(message = "Chưa nhập email")
     @Size(min = 3, max = 50)
@@ -20,27 +26,27 @@ public class SignupRequest {
     @NotBlank(message = "Chưa nhập tên")
     @Size(min = 6, max = 50)
     private String fullName;
-
-
     @NotNull(message = "Chưa nhập mã nhân viên")
-
     private String code;
-
-    public String getDepartment() {
-        return department;
-    }
-
     private long position;
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     @NotBlank(message = "Chưa chọn phòng ban")
     private String department;
     @NotBlank(message = "Chưa chọn giới tính")
     private String gender;
+    private MultipartFile cover;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startWork;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endWork;
 
+    private String badgeNumber;
+    private String ssn;
+    public String getDepartment() {
+        return department;
+    }
+    public void setDepartment(String department) {
+        this.department = department;
+    }
     public MultipartFile getCover() {
         return cover;
     }
@@ -49,13 +55,6 @@ public class SignupRequest {
         this.cover = cover;
     }
 
-    private MultipartFile cover;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate startWork;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate endWork;
 
     public LocalDate getStartWork() {
         return startWork;

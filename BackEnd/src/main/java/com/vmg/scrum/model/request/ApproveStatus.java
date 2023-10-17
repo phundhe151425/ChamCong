@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_ApproveStatus")
 public class ApproveStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

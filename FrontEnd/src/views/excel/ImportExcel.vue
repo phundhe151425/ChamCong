@@ -21,7 +21,6 @@
           :hidden="check"
           :data="tableData"
           height="500"
-
           style="width: 100%;font-size: 16px">
       <el-table-column
           prop="fullName"

@@ -21,6 +21,8 @@ public interface LogDetailRepository extends JpaRepository<LogDetail, Long> {
 
     @Override
     Page<LogDetail> findAll(Pageable pageable);
+    @Query(value = "select * from log_detail where user_id = ?1 and date_log = ?2",nativeQuery = true)
+    LogDetail findByUserIdAndDateLog(Long userId, LocalDate date);
 
     @Query(value = "select l from LogDetail l\n" +
             " join l.user u " +

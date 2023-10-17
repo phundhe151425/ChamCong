@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_Position")
 public class Position {
 
     @Id

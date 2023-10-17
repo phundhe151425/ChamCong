@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_FurloughHistory")
 public class FurloughHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,7 +15,7 @@ import java.time.temporal.ChronoUnit;
 @NoArgsConstructor
 @Getter
 @Setter
-
+//@Table(name = "TK_Holiday")
 public class Holiday extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

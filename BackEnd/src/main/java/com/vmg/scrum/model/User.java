@@ -3,7 +3,9 @@ package com.vmg.scrum.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vmg.scrum.model.excel.LogCheckInOut;
 import com.vmg.scrum.model.excel.LogDetail;
+import com.vmg.scrum.model.excel.LogInLateOutEarly;
 import com.vmg.scrum.model.furlough.Furlough;
 import com.vmg.scrum.model.furlough.FurloughHistory;
 import com.vmg.scrum.model.option.Department;
@@ -74,6 +76,15 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<LogDetail> logDetails= new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<LogCheckInOut> logCheckInOuts= new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<LogInLateOutEarly> logInLateOutEarlies= new HashSet<>();
+
     @ManyToMany( fetch = FetchType.LAZY)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns =
     @JoinColumn(name = "role_id"))
@@ -90,7 +101,6 @@ public class User extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
     @JsonIgnore
-
     private Set<FurloughHistory> pastYearFurlough;
 
     @Column(name = "date_startwork", nullable = true)
@@ -100,6 +110,9 @@ public class User extends BaseEntity {
     @Column(name = "date_endwork", nullable = true)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endWork;
+
+    private String badgeNumber;
+    private String ssn;
 
 
     public User(String username, String rootPassword, String fullName,String gender,String cover,String code,Department department,Position position,LocalDate startWork, LocalDate endWork) {

@@ -35,7 +35,7 @@
         <br/><br/>
         <a
             style="margin-top: 20px; color: #33acff"
-            href="https://localhost:8000/login"
+            :href="feUrl+ `login`"
         >Trở lai trang đăng nhâp</a
         >
       </div>
@@ -44,6 +44,21 @@
   </body>
   </html>
 </template>
+
+<script>
+
+import {FE_URL} from "@/http-common";
+export default {
+    name: "ConfirmForgotVue",
+    data() {
+        return {
+            feUrl: FE_URL,
+        };
+    },
+}
+</script>
+
+
 <style scoped>
 * {
   margin: 0;

@@ -57,7 +57,7 @@
       <br/>
       <div>
         <el-table
-            height="780px"
+            height="700px"
             :default-sort="{prop: 'date_log', order: 'descending'}"
             :data="logs"
             :header-cell-style="{ background: '#D9D9D9', color: 'black', align: 'center'}"
@@ -127,15 +127,15 @@ export default {
   },
 
   created() {
-    DepartmentService.getAllDepartment()
-        .then((response) => {
-          this.departments = response.data;
-          console.log(this.departments);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-  },
+      DepartmentService.getAllDepartment()
+          .then((response) => {
+            this.departments = response.data;
+            console.log(this.departments);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
   methods: {
     getUserCode() {
       this.user_code = this.currentUser.user.code;

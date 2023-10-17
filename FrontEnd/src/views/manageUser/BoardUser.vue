@@ -1,6 +1,8 @@
 <template>
   <div style="padding-bottom: 38px;">
     <div className="container" style="text-align: center; width: 90%;margin: auto">
+        <h2 class="text-start" style="font-weight: bold">Thông tin chấm công của bạn</h2>
+        <br>
       <el-row :gutter="20">
         <el-col :lg="9" :xl="6">
           <div class="grid-content text-start">
@@ -40,7 +42,7 @@
       <div class="text-center ">
         <el-table
             :data="logs"
-            height="800px"
+            height="620px"
             :default-sort="{prop: 'date_log', order: 'descending'}"
             :header-cell-style="{ background: '#D9D9D9', color: 'black', align: 'center'}"
             style="width: 100%; display: inline-block; border-radius: 10px;box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;"

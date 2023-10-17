@@ -124,6 +124,30 @@ const router = new Router({
             path: "/myFurlough",
             component: () => import("./views/manageUser/FurloughSelf.vue"),
         },
+        {
+            path: "/logCheckAdmin",
+            component: () => import("./views/logCheckInOut/ViewLogCheckInOutAdmin.vue"),
+        },
+        {
+            path: "/logCheckMod",
+            component: () => import("./views/logCheckInOut/ViewLogCheckInOutMod.vue"),
+        },
+        {
+            path: "/logCheckUser",
+            component: () => import("./views/logCheckInOut/ViewLogCheckInOutUser.vue"),
+        },
+        {
+            path: "/inLateOutEarlyAdmin",
+            component: () => import("./views/logInLateOutEarly/LogInLateOutEarlyAdmin.vue"),
+        },
+        {
+            path: "/inLateOutEarlyMod",
+            component: () => import("./views/logInLateOutEarly/LogInLateOutEarlyMod.vue"),
+        },
+        {
+            path: "/inLateOutEarlyUser",
+            component: () => import("./views/logInLateOutEarly/LogInLateOutEarlyUser.vue"),
+        },
     ],
 });
 
@@ -145,7 +169,9 @@ router.beforeEach((to, from, next) => {
         "/unpermist",
         "/myFurlough",
         "/managerequest",
-        "/requestdetail"
+        "/requestdetail",
+        "/logCheckUser",
+        "/inLateOutEarlyUser"
     ];
     const adminPages = [
         "/add-user",
@@ -153,9 +179,11 @@ router.beforeEach((to, from, next) => {
         "/timesheetadmin",
         "/report",
         "/reportFurlough",
-        "/manageholiday"
+        "/manageholiday",
+        "/logCheckAdmin",
+        "/inLateOutEarlyAdmin"
     ];
-    const managePages = ["/timesheetmod", "/report", "/reportFurlough"];
+    const managePages = ["/timesheetmod", "/report", "/reportFurlough", "/logCheckMod", "/inLateOutEarlyMod"];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem("user");
     if (

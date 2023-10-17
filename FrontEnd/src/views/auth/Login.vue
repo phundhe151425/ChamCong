@@ -46,9 +46,9 @@
           <br/>
           <a
               style="margin-top: 20px; color: #33acff"
-              href="https://localhost:8000/forgotPassword"
-          >Quên mât khẩu</a
-          >
+              :href="this.fe_url +`forgotPassword`"
+          >Quên mât khẩu</a>
+<!--           href="https://localhost:8000/forgotPassword"-->
           <br/>
           <small v-if="messageForm" style="color: red">{{
               messageForm
@@ -64,7 +64,7 @@
 </template>
 <script>
 import User from "../../models/user";
-
+import {FE_URL} from "@/http-common";
 export default {
   name: "LoginVue",
   data() {
@@ -83,6 +83,8 @@ export default {
       messageEmail: "",
       messagePass: "",
       messageForm: "",
+
+        fe_url: FE_URL
     };
   },
   computed: {

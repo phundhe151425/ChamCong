@@ -5,5 +5,6 @@ public enum ENoteCatergory {
     E_FACE,
     E_REQUEST,
     E_HOLIDAY,
-    E_WEEKEND
+    E_WEEKEND,
+    E_CHECKINOUT
 }

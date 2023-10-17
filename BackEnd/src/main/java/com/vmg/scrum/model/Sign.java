@@ -14,6 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_Sign")
 public class Sign {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

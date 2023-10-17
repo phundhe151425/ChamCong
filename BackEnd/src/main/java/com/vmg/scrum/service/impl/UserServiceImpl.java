@@ -17,11 +17,15 @@ import com.vmg.scrum.repository.UserRepository;
 import com.vmg.scrum.security.UserDetailsImpl;
 import com.vmg.scrum.security.jwt.HashOneWay;
 import com.vmg.scrum.security.jwt.JwtUtils;
+import com.vmg.scrum.service.LdapService;
 import com.vmg.scrum.service.MailService;
 import com.vmg.scrum.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,6 +39,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
     private final AuthenticationManager authenticationManager;
 
@@ -58,6 +63,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private final PositionRepository positionRepository;
 
+    @Autowired
+    LdapService ldapService;
+
+    @Value("${ldap.default.password}")
+    private String ldapDefaultPassword;
 
     public UserServiceImpl(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, HashOneWay encoder, JwtUtils jwtUtils, PositionRepository positionRepository) {
         this.authenticationManager = authenticationManager;
@@ -81,23 +91,47 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public JwtResponse authenticateUser(LoginRequest loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+        if(!ldapDefaultPassword.equals(loginRequest.getPassword())){
+            ldapService.login(loginRequest.getUsername(), loginRequest.getPassword());
+        }
+//        ldapService.login(loginRequest.getUsername(), loginRequest.getPassword());
+        log.info("Kết nối hệ thống Ldap thành công");
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
-
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
-                .collect(Collectors.toList());
-        Boolean check = userRepository.getById(userDetails.getId()).getCheckRootDisable();
-        Boolean avalible = userRepository.getById(userDetails.getId()).getAvalible();
+        Boolean checkRecord = userRepository.existsByUsername(loginRequest.getUsername());
+        if (!checkRecord) {
+            log.info("Không tìm thấy thông tin người dùng trên hệ thông CSS");
+            throw new RuntimeException("Tài khoản chưa được phân quyền trên hệ thống chấm công");
+        }
+        String jwt = jwtUtils.generateJwtToken(loginRequest.getUsername());
+        User user = userRepository.getByUsername(loginRequest.getUsername());
+        Boolean check = user.getCheckRootDisable();
+        List<String> roles = new ArrayList<>();
+        for (Role role: user.getRoles()) {
+            roles.add(String.valueOf(role.getName()));
+        }
+        Boolean avalible = user.getAvalible();
         if (avalible == false) throw new LockAccountException("Account have been lock by admin");
         return new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                roles, userRepository.getById(userDetails.getId()), check);
+                user.getId(),
+                user.getUsername(),
+                roles, user, check);
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+//
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        String jwt = jwtUtils.generateJwtToken(authentication);
+//
+//        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//        List<String> roles = userDetails.getAuthorities().stream()
+//                .map(item -> item.getAuthority())
+//                .collect(Collectors.toList());
+//        Boolean check = userRepository.getById(userDetails.getId()).getCheckRootDisable();
+//        Boolean avalible = userRepository.getById(userDetails.getId()).getAvalible();
+//        if (avalible == false) throw new LockAccountException("Account have been lock by admin");
+//        return new JwtResponse(jwt,
+//                userDetails.getId(),
+//                userDetails.getUsername(),
+//                roles, userRepository.getById(userDetails.getId()), check);
     }
 
     @Override
@@ -120,12 +154,14 @@ public class UserServiceImpl implements UserService {
                 signUpRequest.getFullName(),
                 signUpRequest.getGender(),
                 filename,
-                "VMG_"+signUpRequest.getCode(),
+                "BLUE_"+signUpRequest.getCode(),
                 department,
                 position,
                 signUpRequest.getStartWork(),
                 signUpRequest.getEndWork()
         );
+        user.setBadgeNumber(signUpRequest.getBadgeNumber());
+        user.setSsn(signUpRequest.getSsn());
         Set<Role> roles = new HashSet<>();
        if(position.getId() == 1) {
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
@@ -172,6 +208,8 @@ public class UserServiceImpl implements UserService {
                 signUpRequest.getStartWork(),
                 signUpRequest.getEndWork()
         );
+        user.setBadgeNumber(signUpRequest.getBadgeNumber());
+        user.setSsn(signUpRequest.getSsn());
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 
@@ -284,6 +322,8 @@ public class UserServiceImpl implements UserService {
         user.setPosition(position);
         user.setStartWork(updateRequest.getStartWork());
         user.setEndWork(updateRequest.getEndWork());
+        user.setBadgeNumber(updateRequest.getBadgeNumber());
+        user.setSsn(updateRequest.getSsn());
         System.out.println(updateRequest.getCover().getSize());
         if (updateRequest.getCover() != null && updateRequest.getCover().getSize() > 0) {
             if(!user.getCover().equals("default.png"))

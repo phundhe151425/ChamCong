@@ -7,7 +7,9 @@ import com.vmg.scrum.payload.request.SignupRequest;
 import com.vmg.scrum.payload.response.MessageResponse;
 import com.vmg.scrum.repository.UserRepository;
 import com.vmg.scrum.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -21,6 +23,8 @@ public class AuthController {
     private final UserService userService;
 
     UserRepository userRepository;
+
+
 
     public AuthController(UserService userService) {
         this.userService = userService;

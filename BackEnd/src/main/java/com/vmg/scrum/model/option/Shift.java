@@ -13,6 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_Shift")
 public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+//@Table(name = "TK_Furlough")
 public class Furlough {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

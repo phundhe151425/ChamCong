@@ -56,7 +56,7 @@
           >
           <br/>
           <div style="margin-top: 20px">
-            <a style="color: #33acff" href="https://localhost:8000/login"
+            <a style="color: #33acff" :href="feUrl +`login`"
             >Quay lại trang Đăng nhập</a
             >
           </div>
@@ -70,7 +70,7 @@
 </template>
 <script>
 import UserService from "@/services/user.service";
-
+import {FE_URL} from "@/http-common";
 export default {
   name: "ForgotVue",
   data() {
@@ -81,6 +81,7 @@ export default {
       checkEmail: true,
       users: [],
       a: "",
+        feUrl: FE_URL,
     };
   },
   computed: {
